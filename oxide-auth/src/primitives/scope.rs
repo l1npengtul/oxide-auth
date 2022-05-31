@@ -44,7 +44,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// In particular, the characters '\x22' (`"`) and '\x5c' (`\`)  are not allowed.
 ///
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Scope {
     tokens: HashSet<String>,
 }

@@ -8,6 +8,7 @@ use std::sync::{Arc, MutexGuard, RwLockWriteGuard};
 use std::sync::atomic::{AtomicUsize, Ordering};
 
 use chrono::{Duration, Utc};
+use serde::{Deserialize, Serialize};
 
 use super::Time;
 use super::grant::Grant;
@@ -34,7 +35,7 @@ pub trait Issuer {
 }
 
 /// Token parameters returned to a client.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct IssuedToken {
     /// The bearer token
     pub token: String,
@@ -62,7 +63,7 @@ pub struct IssuedToken {
 /// In other context (RFC 8693) the explicitly non-access-token kind `N_A` also exists but this is
 /// not a possible response.
 #[non_exhaustive]
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum TokenType {
     /// A bearer token used on its own in an Authorization header.
     ///
@@ -71,7 +72,7 @@ pub enum TokenType {
 }
 
 /// Refresh token information returned to a client.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct RefreshedToken {
     /// The bearer token.
     pub token: String,
